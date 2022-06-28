@@ -14,7 +14,7 @@ Achieving high-performance with large-scale scientific applications ultimately d
 # program updates
 I plan to update this code with each new release of the top500 list (at the lastest) and eventually release an updated machine learning model that I made in Graduate School which can be used to identify the most effective hardware design specifications and the most optimal software/hardware combinations by training it on the latest datasets. 
 
-# Visualizations Using the June 2022 Dataset
+# visualizations
 All of the data visualizations from running [the program](https://github.com/tommygorham/top500/blob/main/top500analysis.py) in Jupyter Notebook can be viewed [here](https://github.com/tommygorham/top500/blob/main/top500_notebook.ipynb). You can also view the visualizations in the [Visualizations folder](https://github.com/tommygorham/top500/tree/main/Visualizations).
 I've included the scatterplot below as an example. This plot is produced by scaling the *powerkw* and *rmaxtflops* features, and renaming the *processor* to a more generalized category (e.g., AMD, NVIDIA, IBM, Other). The function that generates the graph is `def plotPowerVsPerformance(df, m, y)` on line 185.
 
