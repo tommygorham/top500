@@ -195,8 +195,8 @@ def plotPowerVsPerformance(df, m, y):
     print("\n############## Power vs Performance " + str(month) + " " + str(year) + " ##################\n")  
     sns.set(rc={"figure.figsize":(10, 8)}) #width=3, #height=4
     sns.scatterplot(data=df, x="performancelog2", y="powerlog2", hue="cpu", style="sysarch", palette=palette).set(title=title)
-    plt.xlabel('Linpack Performance') #x label
-    plt.ylabel('Power Consumption') #y label
+    plt.xlabel('Maximal LINPACK Performance (Tflops/sec Scaled to Log Base 2)') #x label
+    plt.ylabel('Power (Kilowatts Scaled to Log Base 2)') #y label
     plt.legend(loc='lower right', prop={'size':12}, markerscale=1.1) 
     plt.savefig(str(month)+str(year)+"powervperformance_cpu_and_arch.png")
     plt.show()
@@ -295,7 +295,7 @@ def main():
     # df of scaled data for plotting power and performance    
      # add a heterogeneous column 
     df_june22['sysarch'] = np.where(df_june22['accelerator']=='None', 'CPU Only Machine', 'CPUGPU Machine') 
-    toscale = df_june22[['powerkw', 'rmaxtflops', 'cpu', 'sysarch', 'rank']] 
+    toscale = df_june22[['powerkw', 'rmaxtflops', 'cpu', 'sysarch', 'nmax']] 
     toscale['powerlog2'] = np.log2(toscale['powerkw'])
     toscale.dropna()
     toscale['performancelog2'] = np.log2(toscale['rmaxtflops'])
@@ -310,6 +310,8 @@ def main():
     processAccManufacturers                       (df_june22, "June", "2022", True) # GPU 
     june22_heterogeneity = processHeterogeneity   (df_june22, "June", "2022", True) # CPU-only vs CPU+GPU machines
     june11_heterogeneity = processHeterogeneity   (df_june11, "June", "2011", True) # CPU-only vs CPU+GPU machines in 2011 
+    print("\nJune2022 Ratio of CPU-GPU Machines vs CPU only: ", june22_heterogeneity) 
+    print("\nJune2011 Ratio of CPU-GPU Machines vs CPU only: ", june11_heterogeneity) 
     increase_in_heterogeneity =  calcPercentIncrease(june22_heterogeneity, june11_heterogeneity) 
     print('\nJune 2011 - June 2022 increase in heterogeneity: ' , end="")
     print(increase_in_heterogeneity) 
