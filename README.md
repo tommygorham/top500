@@ -31,6 +31,6 @@ I've included the scatterplot below as an example. This plot is produced by scal
 <img src="https://github.com/tommygorham/top500/blob/main/Visualizations/June2022powervperformance_cpu_and_arch.png" height="600px"  />
 </p> 
 
-[Interactive plot](https://github.com/tommygorham/top500/blob/main/Visualizations/InteractiveMachineInfo.html) 
+[Interactive plot](http://htmlpreview.github.io/?https://github.com/tommygorham/top500/blob/main/Visualizations/InteractiveMachineInfo.html)
 
 The righmost datapoint (which is Red) is Frontier, AMD's heterogeneous machine that achieved exascale in June 2022. 
