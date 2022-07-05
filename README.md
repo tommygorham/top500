@@ -16,15 +16,9 @@ I plan to update this code with each new release of the top500 list (at the last
 
 # visualizations
 All of the data visualizations from running [the program](https://github.com/tommygorham/top500/blob/main/top500analysis.py) in Jupyter Notebook can be viewed [here](https://github.com/tommygorham/top500/blob/main/top500_notebook.ipynb). You can also view the visualizations in the [Visualizations folder](https://github.com/tommygorham/top500/tree/main/Visualizations).
-I've included the scatterplot below as an example. This plot is produced by scaling the *powerkw* and *rmaxtflops* features, and renaming the *processor* to a more generalized category (e.g., AMD, NVIDIA, IBM, Other). The function that generates the graph is `def plotPowerVsPerformance(df, m, y)` on line 185.
+I've included the scatterplot below as an example. This plot is produced by scaling the *powerkw* and *rmaxtflops* features, and renaming the *processor* to a more generalized category (e.g., AMD, NVIDIA, IBM, Other).
 
-**x-axis:** LINPACK Benchmark Score, denoted as *Rmax*, scaled with log2
-
-**y-axis:** power of a machine in kW, also scaled with log2
-
-**Color of Data Points:** represents the manufacturer of the CPU Chip
-
-**Shape of the Datapoints:** represents if the machine has attached accelerators or not
+**To hover over data points and view machine info interactively,** [click here](http://htmlpreview.github.io/?https://github.com/tommygorham/top500/blob/main/Visualizations/InteractiveMachineInfo.html) 
 
 
 <p align="center">
