@@ -196,11 +196,13 @@ def plotPowerVsPerformance(df, m, y):
     sns.set(rc={"figure.figsize":(10, 8)}) #width=3, #height=4
     sns.scatterplot(data=df, x="performancelog2", y="powerlog2", hue="cpu", style="sysarch", palette=palette).set(title=title)
     plt.xlabel('Maximal LINPACK Performance (Tflops/sec Scaled to Log Base 2)') #x label
-    plt.ylabel('Power (Kilowatts Scaled to Log Base 2)') #y label
+    plt.ylabel('Maximal Power (Kilowatts Scaled to Log Base 2)') #y label
     plt.legend(loc='lower right', prop={'size':12}, markerscale=1.1) 
     plt.savefig(str(month)+str(year)+"powervperformance_cpu_and_arch.png")
     plt.show()
 #end function 
+
+
 
 #this function returns the respective count of interconnects, if doPLot == true, it produces a bar graph of the interconnects 
 def processInterconnect(df, m, y, doPlot): 
@@ -316,6 +318,15 @@ def main():
     print('\nJune 2011 - June 2022 increase in heterogeneity: ' , end="")
     print(increase_in_heterogeneity) 
     plotPowerVsPerformance                        (df_scaled, "June", "2022")       # kW by Rmax via CPU Chip Manufacturer
+    ## new hoverable graph 
+    import plotly.express as px
+    print("\n\nPower vs Performance Hoverable-- need to format\n") 
+    plt = px.scatter(df_june22, x="log2performance", y="log2power", color='cpu', symbol='sysarch',  hover_data=['name'], color_discrete_map={
+    'AMD':'red', #e.g., AMD machines will produce red points 
+    'Intel': 'mediumblue',
+    'IBM'  : 'green', 
+    'OTHER' : 'yellow'}, labels={"log2performance":"Performance Tflops/sec"}) 
+    plt.show()
     processInterconnect                           (df_june22, "June", "2022", True) # Gigabit ethernet, infiniband, etc. 
     printGpuAccCoreStats                          (df_june22, "June", "2022")       # GPU Core Stats
     showTopMachineSpecs                           (df_june22, "June", "2022")       # fastest machine 
