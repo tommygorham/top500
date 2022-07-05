@@ -320,13 +320,15 @@ def main():
     plotPowerVsPerformance                        (df_scaled, "June", "2022")       # kW by Rmax via CPU Chip Manufacturer
     ## new hoverable graph 
     import plotly.express as px
-    print("\n\nPower vs Performance Hoverable-- need to format\n") 
+    print("\n\nPower vs Performance, Hover for Machine Info\n") 
     plt = px.scatter(df_june22, x="log2performance", y="log2power", color='cpu', symbol='sysarch',  hover_data=['name'], color_discrete_map={
     'AMD':'red', #e.g., AMD machines will produce red points 
-    'Intel': 'mediumblue',
-    'IBM'  : 'green', 
-    'OTHER' : 'yellow'}, labels={"log2performance":"Performance Tflops/sec"}) 
+    'Intel': '#0277bd',
+    'IBM'  : 'blue', 
+    'OTHER' : 'orange'}, labels={"log2performance":"Maximal LINPACK Performance (Tflops/sec Scaled to Log Base 2)", "log2power": "Maximal Power (Kilowatts Scaled to Log Base 2)"},  width=1200, height=800) 
+    plt.write_html("InteractiveMachineInfo.html")
     plt.show()
+    
     processInterconnect                           (df_june22, "June", "2022", True) # Gigabit ethernet, infiniband, etc. 
     printGpuAccCoreStats                          (df_june22, "June", "2022")       # GPU Core Stats
     showTopMachineSpecs                           (df_june22, "June", "2022")       # fastest machine 
