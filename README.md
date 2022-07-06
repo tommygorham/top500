@@ -15,8 +15,7 @@ Achieving high-performance with large-scale scientific applications ultimately d
 I plan to update this code with each new release of the top500 list (at the lastest) and eventually release an updated machine learning model that I made in Graduate School which can be used to identify the most effective hardware design specifications and the most optimal software/hardware combinations by training it on the latest datasets. 
 
 # visualizations
-All of the data visualizations from running [the program](https://github.com/tommygorham/top500/blob/main/top500analysis.py) in Jupyter Notebook can be viewed [here](https://github.com/tommygorham/top500/blob/main/top500_notebook.ipynb). You can also view the visualizations in the [Visualizations folder](https://github.com/tommygorham/top500/tree/main/Visualizations).
-I've included the scatterplot below as an example. This plot is produced by scaling the *powerkw* and *rmaxtflops* features, and renaming the *processor* to a more generalized category (e.g., AMD, NVIDIA, IBM, Other).
+All of the data visualizations from running [the program](https://github.com/tommygorham/top500/blob/main/top500analysis.py) in Jupyter Notebook can be viewed [here](https://github.com/tommygorham/top500/blob/main/top500_notebook.ipynb). You can also view the visualizations in the [Visualizations folder](https://github.com/tommygorham/top500/tree/main/Visualizations). I've included the scatterplot below as an example. This plot is produced by scaling the *powerkw* and *rmaxtflops* features, and renaming the *processor* to a more generalized category (e.g., AMD, NVIDIA, IBM, Other). The righmost datapoint (which is Red) is Frontier, AMD's heterogeneous machine that achieved exascale in June 2022. 
 
 **To hover over data points and view machine info interactively,** [click here](http://htmlpreview.github.io/?https://github.com/tommygorham/top500/blob/main/Visualizations/InteractiveMachineInfo.html) 
 
@@ -25,6 +24,8 @@ I've included the scatterplot below as an example. This plot is produced by scal
 <img src="https://github.com/tommygorham/top500/blob/main/Visualizations/June2022powervperformance_cpu_and_arch.png" height="600px"  />
 </p> 
 
-[Interactive plot](http://htmlpreview.github.io/?https://github.com/tommygorham/top500/blob/main/Visualizations/InteractiveMachineInfo.html)
+[Interactive Hover Plot](http://htmlpreview.github.io/?https://github.com/tommygorham/top500/blob/main/Visualizations/InteractiveMachineInfo.html)
 
-The righmost datapoint (which is Red) is Frontier, AMD's heterogeneous machine that achieved exascale in June 2022. 
+![InteractiveHover](https://user-images.githubusercontent.com/38857089/177635140-def4959e-1cf4-4806-99ec-f5d05377a479.png)
+
+
