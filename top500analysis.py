@@ -202,8 +202,6 @@ def plotPowerVsPerformance(df, m, y):
     plt.show()
 #end function 
 
-
-
 #this function returns the respective count of interconnects, if doPLot == true, it produces a bar graph of the interconnects 
 def processInterconnect(df, m, y, doPlot): 
     month = m
@@ -225,6 +223,10 @@ def processInterconnect(df, m, y, doPlot):
         plt.show()
 #end function 
 
+# this function returnsinfo on the top machine in the list 
+# @cpu_cores_per-node: machine dependent, currently requires lookup 
+# @gpus_per_node:      machine dependent, currently requires lookup 
+# @gpu_cores_per_chip: machine dependent, currently requires lookup  
 def showTopMachineSpecs(df, m, y): 
     month = m
     year = y
@@ -318,7 +320,7 @@ def main():
     print('\nJune 2011 - June 2022 increase in heterogeneity: ' , end="")
     print(increase_in_heterogeneity) 
     plotPowerVsPerformance                        (df_scaled, "June", "2022")       # kW by Rmax via CPU Chip Manufacturer
-    ## new hoverable graph 
+    # interactive/hover plot 
     import plotly.express as px
     print("\n\nPower vs Performance, Hover for Machine Info\n") 
     plt = px.scatter(df_june22, x="log2performance", y="log2power", color='cpu', symbol='sysarch',  hover_data=['name'], color_discrete_map={
@@ -328,7 +330,7 @@ def main():
     'OTHER' : 'orange'}, labels={"log2performance":"Maximal LINPACK Performance (Tflops/sec Scaled to Log Base 2)", "log2power": "Maximal Power (Kilowatts Scaled to Log Base 2)"},  width=1200, height=800) 
     plt.write_html("InteractiveMachineInfo.html")
     plt.show()
-    
+    #end interactive hover plot 
     processInterconnect                           (df_june22, "June", "2022", True) # Gigabit ethernet, infiniband, etc. 
     printGpuAccCoreStats                          (df_june22, "June", "2022")       # GPU Core Stats
     showTopMachineSpecs                           (df_june22, "June", "2022")       # fastest machine 
