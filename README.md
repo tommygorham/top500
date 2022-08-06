@@ -9,7 +9,11 @@ Using Python and Jupyter Notebook, I analyze [the latest top500 dataset](https:/
 a computer solved one quintillion (10^18) double precision (64-bit) calculations each second. This level of performance enables scientists from all domains to 
 realistically simulate complex experiments and solve problems that would be impossible to solve without this computational power. In using this newly released dataset, I look to categorize the specifications of the chips and system architectures to identify trends in optimal hardware designs. 
 
-Achieving high-performance with large-scale scientific applications ultimately depends on a large variety of factors. Given the realities of modern hardware architectures, and the challenges this puts on programmers of these machines, it's beneficial to analyze and understand the cardinal hardware characteristics that are nothing less than necessary for the exascale era. Ultimately, having a thorough and current interpretation of the hardware features that theoretically achieve such a high level of performance is ideal when designing approaches to exploit maximum parallelism in scientific applications. 
+Achieving high-performance with large-scale scientific applications ultimately depends on a large variety of factors. Given the realities of modern hardware architectures, and the challenges this puts on programmers of these machines, it's beneficial to analyze and understand the cardinal hardware characteristics that are nothing less than necessary for the exascale era. Ultimately, having a thorough and current interpretation of the hardware features that theoretically achieve such a high level of performance is ideal when designing approaches to exploit maximum parallelism in scientific applications. Below is a heatmap of some features of the top500 computers via their correlation with this metric. 
+
+<p align="center">
+<img src="https://github.com/tommygorham/top500/blob/main/Visualizations/Theoretical_Peak%2BPerformance_Heatmap_of_Corr_Spring22.png" height="600px" /> 
+</p> 
 
 # program updates
 I plan to update this code with each new release of the top500 list (at the lastest) and eventually release an updated machine learning model that I made in Graduate School which can be used to identify the most effective hardware design specifications and the most optimal software/hardware combinations by training it on the latest datasets. 
