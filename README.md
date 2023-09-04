@@ -15,6 +15,18 @@ Achieving high-performance with large-scale scientific applications ultimately d
 <img src="https://github.com/tommygorham/top500/blob/main/Visualizations/Theoretical_Peak%2BPerformance_Heatmap_of_Corr_Spring22.png" height="600px" /> 
 </p> 
 
+```python
+# to reproduce this 
+df2 = df[[ 'rmaxtflops', 'totalcores', 'corespersocket', 'powerkw', 'processorspeedmhz', 'CPU', 'target' ]]
+df2.dropna()
+pd.set_option('max_columns', 8)
+plt.figure (figsize = (12, 10))
+cor = df_numeric.corr()
+sns.heatmap (cor, annot=True, cmap=plt.cm.Reds)
+plt.savefig("Heatmap.png")
+plt.show()
+```
+
 # program updates
 I plan to update this code with each new release of the top500 list (at the lastest) and eventually release an updated machine learning model that I made in Graduate School which can be used to identify the most effective hardware design specifications and the most optimal software/hardware combinations by training it on the latest datasets. 
 
