@@ -1,5 +1,5 @@
 # Program:     top500analysis.py
-# Description: Top500.org June2022 list analysis of the fastest supercomputers
+# Description: Top500.org June2023 list analysis of the fastest supercomputers
 #              based on their respective scores on the LINPACK Benchmark
 # Author: Tommy Gorham
 
@@ -16,9 +16,10 @@ import warnings #to remove 'future warnings' from pandas output
 
 ########################### datasets ###########################
 current_path = os.getcwd()
-df_june22 = pd.read_excel(current_path+"/datasets/top500june22data.xlsx", engine='openpyxl')
-# df_nov21 = pd.read_excel("top500nov21data.xlsx", engine='openpyxl')
-df_june11 = pd.read_excel(current_path+"/datasets/top500june11data.xls") 
+#df_june22 = pd.read_excel(current_path+"/datasets/top500june22data.xlsx", engine='openpyxl')
+df_latest =  pd.read_excel(current_path+"/datasets/TOP500JUNE2023.xlsx", engine='openpyxl')
+#df_nov21 = pd.read_excel("top500nov21data.xlsx", engine='openpyxl')
+#df_june11 = pd.read_excel(current_path+"/datasets/top500june11data.xls") 
 ################################################################
 
 ########################### pre-processing functions ###########################
@@ -215,7 +216,7 @@ def processInterconnect(df, m, y, doPlot):
     else: 
         print(df['interconnectfamily'].value_counts())
         print('\n')
-        sns.barplot(x=df_june22.interconnectfamily.value_counts().index, y=df_june22.interconnectfamily.value_counts(), palette="ch:.25").set(title=title)
+        sns.barplot(x=df_latest.interconnectfamily.value_counts().index, y=df_latest.interconnectfamily.value_counts(), palette="ch:.25").set(title=title)
         plt.gcf().set_size_inches(10,5)
         plt.ylabel('Total')
         plt.xlabel('InterconnectFamily')
@@ -271,76 +272,76 @@ def main():
     sns.set(font="Arial") # for plots
     
     ### GLOBAL VARS: declare dfs global if using jupyter (to facilitate notebook queries) 
-    global df_june22
-    global df_june11
+    global df_latest
+    #global df_june11
     
     ### CLEAN DATA 
-    df_june22 = stripCols(df_june22) # ensure any dfs that are created run stripCols 
-    df_june11 = stripCols(df_june11) # stripCols provides easier access of columns from python  
-    df_june22 = dropCols(df_june22)  # if dataset is ~10 years old, dropCols manually as below 
+    df_latest = stripCols(df_latest) # ensure any dfs that are created run stripCols 
+    #df_june11 = stripCols(df_june11) # stripCols provides easier access of columns from python  
+    df_latest = dropCols(df_latest)  # if dataset is ~10 years old, dropCols manually as below 
     # selecting the cols we want 
-    df_june11 = df_june11[['rmax', 'rpeak', 'cores', 'nmax', 'power', 'processorfamily', 'processor', 'processorcores',        'systemfamily','systemmodel', 'operatingsystem', 'accelerator', 'architecture', 'interconnectfamily', 'interconnect']]
+    #df_june11 = df_june11[['rmax', 'rpeak', 'cores', 'nmax', 'power', 'processorfamily', 'processor', 'processorcores',        'systemfamily','systemmodel', 'operatingsystem', 'accelerator', 'architecture', 'interconnectfamily', 'interconnect']]
     # end of data cleaning 
     
     ### PRE-PROCESSING
     # make sure col names match across datasets
-    df_june11.rename(columns={'cores': 'totalcores'}, inplace=True)
-    df_june22.rename(columns={'acceleratorcoprocessor': 'accelerator'}, inplace=True)
+    #df_june11.rename(columns={'cores': 'totalcores'}, inplace=True)
+    df_latest.rename(columns={'acceleratorcoprocessor': 'accelerator'}, inplace=True)
     # append a CPU column to main df to contain a categorical var 
-    df_cpunames = df_june22[[ "processor"]]
+    df_cpunames = df_latest[[ "processor"]]
     df_cpunames.loc[df_cpunames['processor'].str.contains('AMD')] ='AMD'
     df_cpunames.loc[df_cpunames['processor'].str.contains('Xeon')] ='Intel'
     df_cpunames.loc[df_cpunames['processor'].str.contains('IBM')] ='IBM'
     df_cpunames.loc[df_cpunames['processor'].str.contains('GHz')] ='OTHER' # keep this line at the end of the above three reassignments or use the ~ operator here 
-    df_june22['cpu']= df_cpunames # adding this back to main df (cpu chip manuf)
+    df_latest['cpu']= df_cpunames # adding this back to main df (cpu chip manuf)
     # data validation, ensure everything reassigned without missing values
     if ((df_cpunames.isnull().values.any()) != False):
         print("\nNull Values Detected in df_cpunames.")     
     # df of scaled data for plotting power and performance    
      # add a heterogeneous column 
-    df_june22['sysarch'] = np.where(df_june22['accelerator']=='None', 'CPU Only Machine', 'CPUGPU Machine') 
-    toscale = df_june22[['powerkw', 'rmaxtflops', 'cpu', 'sysarch', 'nmax']] 
+    df_latest['sysarch'] = np.where(df_latest['accelerator']=='None', 'CPU Only Machine', 'CPUGPU Machine') 
+    toscale = df_latest[['powerkw', 'rmaxtflops', 'cpu', 'sysarch', 'nmax']] 
     toscale['powerlog2'] = np.log2(toscale['powerkw'])
     toscale.dropna()
     toscale['performancelog2'] = np.log2(toscale['rmaxtflops'])
     df_scaled = toscale.dropna(axis=0, how='any') 
     # add scaled data back to original df 
-    df_june22['log2power'] = df_scaled['powerlog2'] 
-    df_june22['log2performance'] = df_scaled['performancelog2']
+    df_latest['log2power'] = df_scaled['powerlog2'] 
+    df_latest['log2performance'] = df_scaled['performancelog2']
     # end of preprocessing
 
     ### BEGIN ANALYSIS 
-    processCpuManufacturers                       (df_june22, "June", "2022", True) # CPU 
-    processAccManufacturers                       (df_june22, "June", "2022", True) # GPU 
-    june22_heterogeneity = processHeterogeneity   (df_june22, "June", "2022", True) # CPU-only vs CPU+GPU machines
-    june11_heterogeneity = processHeterogeneity   (df_june11, "June", "2011", True) # CPU-only vs CPU+GPU machines in 2011 
-    print("\nJune2022 Ratio of CPU-GPU Machines vs CPU only: ", june22_heterogeneity) 
-    print("\nJune2011 Ratio of CPU-GPU Machines vs CPU only: ", june11_heterogeneity) 
-    increase_in_heterogeneity =  calcPercentIncrease(june22_heterogeneity, june11_heterogeneity) 
-    print('\nJune 2011 - June 2022 increase in heterogeneity: ' , end="")
-    print(increase_in_heterogeneity) 
-    plotPowerVsPerformance                        (df_scaled, "June", "2022")       # kW by Rmax via CPU Chip Manufacturer
+    processCpuManufacturers                       (df_latest, "June", "2023", True) # CPU 
+    processAccManufacturers                       (df_latest, "June", "2023", True) # GPU 
+    june23_heterogeneity = processHeterogeneity   (df_latest, "June", "2023", True) # CPU-only vs CPU+GPU machines
+    #june11_heterogeneity = processHeterogeneity   (df_june11, "June", "2011", True) # CPU-only vs CPU+GPU machines in 2011 
+    print("\nJune2023 Ratio of CPU-GPU Machines vs CPU only: ", june23_heterogeneity) 
+    #print("\nJune2011 Ratio of CPU-GPU Machines vs CPU only: ", june11_heterogeneity) 
+    #increase_in_heterogeneity =  calcPercentIncrease(june23_heterogeneity, june11_heterogeneity) 
+    print('\nJune 2011 - June 2023 increase in heterogeneity: ' , end="")
+    #print(increase_in_heterogeneity) 
+    plotPowerVsPerformance                        (df_scaled, "June", "2023")       # kW by Rmax via CPU Chip Manufacturer
     # interactive/hover plot 
     import plotly.express as px
     print("\n\nPower vs Performance, Hover for Machine Info\n") 
-    plt = px.scatter(df_june22, x="log2performance", y="log2power", color='cpu', symbol='sysarch',  hover_data=['name'], color_discrete_map={
+    plt = px.scatter(df_latest, x="log2performance", y="log2power", color='cpu', symbol='sysarch',  hover_data=['name'], color_discrete_map={
     'AMD':'red', #e.g., AMD machines will produce red points 
     'Intel': '#0277bd',
     'IBM'  : 'blue', 
     'OTHER' : 'orange'}, labels={"log2performance":"Maximal LINPACK Performance (Tflops/sec Scaled to Log Base 2)", "log2power": "Maximal Power (Kilowatts Scaled to Log Base 2)"},  width=1200, height=800) 
-    plt.write_html("InteractiveMachineInfo.html")
+    plt.write_html("InteractiveMachineInfo2023.html")
     plt.show()
     #end interactive hover plot 
-    processInterconnect                           (df_june22, "June", "2022", True) # Gigabit ethernet, infiniband, etc. 
-    printGpuAccCoreStats                          (df_june22, "June", "2022")       # GPU Core Stats
-    showTopMachineSpecs                           (df_june22, "June", "2022")       # fastest machine 
+    processInterconnect                           (df_latest, "June", "2023", True) # Gigabit ethernet, infiniband, etc. 
+    printGpuAccCoreStats                          (df_latest, "June", "2023")       # GPU Core Stats
+    showTopMachineSpecs                           (df_latest, "June", "2023")       # fastest machine 
     ###########################################################################################
 
     # if futher analysis necessary, divide data into two categories 
-    df_quan = df_june22.select_dtypes(include=np.number) # numerics only df
+    df_quan = df_latest.select_dtypes(include=np.number) # numerics only df
     print("\n\nQuantitative Columns\n", df_quan.columns)
     
-    df_qual = df_june22.select_dtypes(include=object) #categorical only df 
+    df_qual = df_latest.select_dtypes(include=object) #categorical only df 
     print("\n\nQualitative Columns\n", df_qual.columns)
     
 if __name__ == "__main__":
