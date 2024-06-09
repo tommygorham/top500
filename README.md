@@ -13,3 +13,6 @@ Analysis of [the latest top500 dataset](https://www.top500.org/lists/top500/) us
 
 [Interactive Hover
 Plot](http://htmlpreview.github.io/?https://github.com/tommygorham/top500/blob/main/InteractiveMachineInfo2024.html)
+
+
+![Power Vs Performance](https://github.com/tommygorham/top500/blob/main/Visualizations/2024/June2024powervsperformance.png)
