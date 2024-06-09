@@ -166,7 +166,7 @@ def process_gpus(df, plot=True, month=None, year=None):
     nvidia_count = df_acc_manuf.str.contains('NVIDIA', case=False, na=False).sum()
     nvidia_ratio = nvidia_count / out_of
     print(f"\nNVIDIA GPU/ACCs: make up {nvidia_count} / {out_of} GPUs/Co-Processor Accelerators")
-    print(f"or, {round(nvidia_ratio * 100, 3)}%\n")  # Corrected the percentage calculation
+    print(f"or, {round(nvidia_ratio * 100, 3)}%\n")  
     if plot:
         other_count = out_of - nvidia_count
         data = [nvidia_count, other_count]
@@ -226,7 +226,6 @@ def main():
     warnings.simplefilter(action='ignore', category=FutureWarning)  
     pd.options.mode.chained_assignment = None                       
     sns.set(font="Arial") 
-    #global df # for jupyter nb
 
     # get data  
     excel_file = get_data_file()
