@@ -1,21 +1,40 @@
-# Description 
-Analysis of [the latest top500 dataset](https://www.top500.org/lists/top500/) using Python and Jupyter notebook. 
+# top500 
+Data Visualization & Analysis of [the latest top500 dataset](https://www.top500.org/lists/top500/) using Python and Jupyter notebook. 
 
-### Latest update
-November 2024
+Latest Dataset: November 2024
+
+## Machine Learning  
+### Correlation between Theoretical Peak Performance and Computer Architecture 
+![Theoretical_Peak+Performance_Heatmap_of_Corr_Spring22](https://github.com/user-attachments/assets/2b4568a9-4f0a-402c-8f1b-27dd1a042533)
+
+![ML Predictions](Visualizations/2022/ML_Model_Predictions_Spring2022.png)
+
+## Top500 Visualizations & Charts 
 
 [Interactive Hover
 Plot](http://htmlpreview.github.io/?https://github.com/tommygorham/top500/blob/main/InteractiveMachineInfoNovember2024.html)
 
-Power vs Performance Plot from June 2024 (non-interactive) 
-![Power Vs Performance](https://github.com/tommygorham/top500/blob/main/Visualizations/2024/June2024powervsperformance.png)
 
-![CPU Share](https://github.com/tommygorham/top500/blob/main/Visualizations/2024/November2024CPUShare.png)
+Power vs Performance Plot from June 2024 (non-interactive version) 
+<img src="https://github.com/tommygorham/top500/blob/main/Visualizations/2024/June2024powervsperformance.png" 
+     alt="Power Vs Performance" width="765" />
 
-![GPU Share](https://github.com/tommygorham/top500/blob/main/Visualizations/2024/November2024GPUShare.png)
+<div style="display: flex; gap: 10px;">
+  <img 
+       src="https://github.com/tommygorham/top500/blob/main/Visualizations/2024/November2024CPUShare.png" 
+       alt="CPU Share" width="500" />
+  <img 
+       src="https://github.com/tommygorham/top500/blob/main/Visualizations/2024/November2024GPUShare.png" 
+       alt="GPU Share" width="500" />
+</div>
 
-![Heterogeneity](https://github.com/tommygorham/top500/blob/main/Visualizations/2024/November2024heterogeneity.png)
+<img src="https://github.com/tommygorham/top500/blob/main/Visualizations/2024/November2024heterogeneity.png" 
+     alt="Heterogeneity" width="750" />
 
+<img src="https://github.com/tommygorham/top500/blob/main/Visualizations/2024/November2024interconnects.png" 
+     alt="Interconnects" width="750" />
+
+## Trends 
 ### 2023 -> June 2024 
 * AMD CPU Share now 31%, up from 24% last year (2023) 
 * 2% increase in CPU+GPU machines from 2023  
