@@ -9,6 +9,14 @@ Latest Dataset: November 2024
 
 ![ML Predictions](Visualizations/2022/ML_Model_Predictions_Spring2022.png)
 
+### Key Findings and Observations
+
+**Power (kw)** and **total cores** show strong positive correlations indicating that power consumption and more cores generally lead 
+to higher performance.
+
+**Cores per socket**, **Processor Speed (mhz)**  and **CPU Type** show relatively weaker positive correlations suggesting that cores 
+per socket, CPU type, and processor clock speed are not significant drivers or predictors of supercomputer performance in modern systems.
+
 ## Top500 Visualizations & Charts 
 
 [Interactive Hover
