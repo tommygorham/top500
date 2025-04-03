@@ -30,10 +30,10 @@ Power vs Performance Plot from June 2024 (non-interactive version)
 <div style="display: flex; gap: 10px;">
   <img 
        src="https://github.com/tommygorham/top500/blob/main/Visualizations/2024/November2024CPUShare.png" 
-       alt="CPU Share" width="500" />
+       alt="CPU Share" width="400" />
   <img 
        src="https://github.com/tommygorham/top500/blob/main/Visualizations/2024/November2024GPUShare.png" 
-       alt="GPU Share" width="500" />
+       alt="GPU Share" width="400" />
 </div>
 
 <img src="https://github.com/tommygorham/top500/blob/main/Visualizations/2024/November2024heterogeneity.png" 
