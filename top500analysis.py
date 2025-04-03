@@ -20,8 +20,8 @@ current_path = os.getcwd()
 ########################## clean data functions ###############################
 def get_data_file(): 
     parser = argparse.ArgumentParser(description="Analyze the top500 supercomputers.")
-    parser.add_argument("file", nargs='?', default=current_path+"/datasets/june2024.xlsx", 
-                        help="Path to the Excel file (default: ./datasets/june2024.xlsx)")
+    parser.add_argument("file", nargs='?', default=current_path+"/datasets/november2024.xlsx", 
+                        help="Path to the Excel file (default: ./datasets/november2024.xlsx)")
     args = parser.parse_args()
     return args.file
 
@@ -122,7 +122,7 @@ def plot_power_vs_performance(df):
 
 def process_cpus(df, plot=True, month=None, year=None):
     if month is None or year is None:
-        month = month or "June"
+        month = month or "November"
         year = year or 2024
     title = f"CPU Share {month} {year}"
     counted = 0
@@ -155,7 +155,7 @@ def process_cpus(df, plot=True, month=None, year=None):
 
 def process_gpus(df, plot=True, month=None, year=None):
     if month is None or year is None:
-        month = month or "June"
+        month = month or "November"
         year = year or 2024
     title = f"Accelerator Share {month} {year}"
     counted = 0
@@ -181,7 +181,7 @@ def process_gpus(df, plot=True, month=None, year=None):
 
 def process_heterogeneity(df, plot=True, month=None, year=None):
     if month is None or year is None:
-        month = month or "June"
+        month = month or "November"
         year = year or 2024
     title = f"CPU vs CPU+GPU Machines {month} {year}"
     df['accelerator'].replace([None, ''], np.nan, inplace=True)
@@ -203,7 +203,7 @@ def process_heterogeneity(df, plot=True, month=None, year=None):
         
 def process_interconnect(df, plot=True, month=None, year=None):
     if month is None or year is None:
-        month = month or "June"
+        month = month or "November"
         year = year or 2024
     title = f"{month} {year}: Interconnect Distribution"
     interconnects = df['interconnectfamily']  
