@@ -82,6 +82,14 @@ def add_system_architecture_column(df):
         warnings.warn(f"An error occurred while adding the system architecture column: {e}")
     return df
 
+# Rename "Custom Interconnect" value to "Custom" in Interconnect Family column if it exists in the dataframe
+def update_interconnect_family_custom(df):
+    if 'interconnectfamily' in df.columns:
+        df['interconnectfamily'] = df['interconnectfamily'].replace('Custom Interconnect', 'Custom')
+    else:
+        warnings.warn("The DataFrame does not contain an 'interconnectfamily' column.")
+    return df
+
 ########################## plot data functions ################################
 def plot_power_vs_performance(df):
     try:
@@ -239,7 +247,8 @@ def main():
     # pre-process data
     df = append_cpu_column(df) 
     df = add_system_architecture_column(df)
-
+    update_interconnect_family_custom(df)
+    
     # plot 
     plot_power_vs_performance(df) 
     process_cpus(df, plot=True)
