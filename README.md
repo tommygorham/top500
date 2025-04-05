@@ -5,7 +5,7 @@ Latest Dataset: November 2024
 
 ## Machine Learning  
 ### Correlation between Theoretical Peak Performance and Computer Architecture 
-![Theoretical_Peak+Performance_Heatmap_of_Corr_Spring22](https://github.com/user-attachments/assets/2b4568a9-4f0a-402c-8f1b-27dd1a042533)
+![Theoretical_Peak+Performance_Heatmap_of_Corr_Spring22](Visualizations/2022/Theoretical_Peak+Performance_Heatmap_of_Corr_Spring22.png)
 
 ![ML Predictions](Visualizations/2022/ML_Model_Predictions_Spring2022.png)
 
