@@ -11,20 +11,20 @@ Latest Dataset: November 2024
 
 ### Key Findings and Observations
 
-**Power (kw)** and **total cores** show strong positive correlations indicating that power consumption and more cores generally lead 
+* **Power (kw)** and **total cores** show strong positive correlations indicating that power consumption and more cores generally lead 
 to higher performance.
 
-**Cores per socket**, **Processor Speed (mhz)**  and **CPU Type** show relatively weaker positive correlations suggesting that cores 
+* **Cores per socket**, **Processor Speed (mhz)**  and **CPU Type** show relatively weaker positive correlations suggesting that cores 
 per socket, CPU type, and processor clock speed are not significant drivers or predictors of supercomputer performance in modern systems.
 
 ## Top500 Visualizations & Charts 
 
+### Power vs Performance 
 [Interactive Hover
 Plot](http://htmlpreview.github.io/?https://github.com/tommygorham/top500/blob/main/InteractiveMachineInfoNovember2024.html)
 
-
-Power vs Performance Plot from June 2024 (non-interactive version) 
-<img src="https://github.com/tommygorham/top500/blob/main/Visualizations/2024/June2024powervsperformance.png" 
+Non-interactive Plot  
+<img src="https://github.com/tommygorham/top500/blob/main/Visualizations/2024/November2024powervsperformance.png" 
      alt="Power Vs Performance" width="765" />
 
 <div style="display: flex; gap: 10px;">
