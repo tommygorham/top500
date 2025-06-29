@@ -1,7 +1,11 @@
 # top500 
 Data Visualization & Analysis of [the latest top500 dataset](https://www.top500.org/lists/top500/) using Python and Jupyter notebook. 
 
-Latest Dataset: June 2025
+To Run with Latest Dataset (June 2025)
+
+```
+python top500analysis.py
+```
 
 ## Machine Learning  
 ### Correlation between Theoretical Peak Performance and Computer Architecture 
